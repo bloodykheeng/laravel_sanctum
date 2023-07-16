@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\PasswordResetController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +26,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Public Routes
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+Route::post('forgot-password', [PasswordResetController::class, 'forgetPassword']);
+Route::get('/reset-password', [PasswordResetController::class, 'handleresetPasswordLoad']);
+Route::post('/reset-password', [PasswordResetController::class, 'handlestoringNewPassword']);
 
 // private routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
