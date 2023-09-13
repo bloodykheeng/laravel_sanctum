@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\DataSetController;
+use App\Http\Controllers\API\DataSetDetailController;
+use App\Http\Controllers\API\DataSetElementDetailController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\ForgotPasswordController;
@@ -7,6 +10,7 @@ use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +33,13 @@ Route::post('login', [AuthController::class, 'login']);
 Route::post('forgot-password', [PasswordResetController::class, 'forgetPassword']);
 Route::get('/reset-password', [PasswordResetController::class, 'handleresetPasswordLoad']);
 Route::post('/reset-password', [PasswordResetController::class, 'handlestoringNewPassword']);
+
+Route::get('/fetchAndStoreDataSetDetail', [DataSetDetailController::class, 'fetchAndStoreDataSetDetail']);
+Route::get('/fetchAndstoreDataElementsUnderDataSet', [DataSetElementDetailController::class, 'fetchAndstoreDataElementsUnderDataSet'])->name('fetchAndstoreDataElementsUnderDataSet');
+
+
+Route::get('/getAllDataSetsDetails', [DataSetDetailController::class, 'showAllDatasetDetails']);
+Route::get('/dataSetDetailsWithTheredataElementDetails', [DataSetDetailController::class, 'showAllDatasetDetailsWithDataElementDetails']);
 
 // private routes
 Route::group(['middleware' => ['auth:sanctum']], function () {

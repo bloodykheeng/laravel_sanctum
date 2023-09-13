@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(RolesAndPermissionsSeeder::class);
+        $this->call(FetchAndStoreDataSetDetailSeeder::class);
+        $this->call(WeeklyHMIS033bDataElementsSeeder::class);
         // $this->call(CreateFirstUserSeeder::class);
         // \App\Models\User::factory(10)->create();
 
